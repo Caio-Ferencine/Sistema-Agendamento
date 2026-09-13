@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Supabase } from './core/services/supabase';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('sistema-agendamento');
+
+  private supabase = inject(Supabase);
+
+  constructor() {
+    this.supabase.testarConexao();
+  }
+
 }
