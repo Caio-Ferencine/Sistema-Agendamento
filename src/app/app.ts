@@ -1,19 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Supabase } from './core/services/supabase';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  template: '<a class="skip-link" href="#main-content">Pular para o conteúdo</a><router-outlet />',
+  styleUrl: './app.css',
 })
-export class App {
-
-  private supabase = inject(Supabase);
-
-  constructor() {
-    this.supabase.testarConexao();
-  }
-
-}
+export class App {}

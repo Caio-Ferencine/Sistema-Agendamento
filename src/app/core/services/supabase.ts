@@ -6,26 +6,16 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class Supabase {
-
-  public client: SupabaseClient;
+  readonly client: SupabaseClient;
 
   constructor() {
-    this.client = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
-    );
-  }
-
-  async testarConexao() {
-
-    const { data, error } = await this.client.auth.getSession();
-
-    if (error) {
-      console.error('Erro na conexão com o Supabase:', error);
-      return;
-    }
-
-    console.log('Supabase conectado com sucesso!');
-    console.log('Sessão atual:', data.session);
+    this.client = createClient(environment.supabaseUrl, environment.supabaseKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        flowType: 'pkce',
+      },
+    });
   }
 }

@@ -1,0 +1,231 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100dvh;
+  background: #fbfcfa;
+}
+.auth-story {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 10%;
+  background: #e7eee5;
+  position: relative;
+  overflow: hidden;
+  color: #203c2f;
+}
+.auth-story::after {
+  content: '';
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border: 1px solid #b9cbb94d;
+  border-radius: 50%;
+  bottom: -180px;
+  right: -150px;
+  box-shadow:
+    0 0 0 55px #b9cbb92b,
+    0 0 0 110px #b9cbb91a;
+  pointer-events: none;
+}
+.auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #234534;
+  align-self: flex-start;
+  letter-spacing: -1px;
+}
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  background: #325d45;
+  color: white;
+  border-radius: 11px;
+  width: 42px;
+  height: 42px;
+  font-family: Georgia, serif;
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1;
+}
+.auth-story h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1.14;
+  font-size: clamp(36px, 3.8vw, 58px);
+  letter-spacing: -1.5px;
+  margin: 22px 0;
+}
+.auth-story p:not(.eyebrow) {
+  color: #5a705e;
+  max-width: 365px;
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+.auth-story .eyebrow {
+  color: #5a705e;
+}
+.story-detail {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  margin: 19px 0;
+}
+.story-detail span {
+  border: 1px solid #c2d0c0;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+}
+.story-footer {
+  font-size: 12px;
+  color: #667d68;
+  margin-top: 50px;
+}
+.auth-form-area {
+  display: grid;
+  place-items: center;
+  padding: 42px 8%;
+}
+.auth-form-card {
+  width: 100%;
+  max-width: 405px;
+}
+.auth-form-card h2 {
+  font-size: 30px;
+  letter-spacing: -0.9px;
+  line-height: 1.25;
+  margin: 13px 0;
+}
+.auth-intro {
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+.auth-form-card .stack {
+  gap: 17px;
+}
+.auth-submit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 9px;
+  min-height: 47px;
+}
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  margin: 26px 0;
+}
+.auth-switch a {
+  color: #315c43;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+.auth-footnote {
+  border-top: 1px solid #e4e8e1;
+  padding-top: 22px;
+  font-size: 12px;
+  color: #7c847a;
+  text-align: center;
+  line-height: 1.7;
+}
+.field-error {
+  color: #a83c37;
+  font-size: 12px;
+  line-height: 1.45;
+  display: block;
+}
+.field-error:empty {
+  display: none;
+}
+.resend-button {
+  margin-top: 16px;
+  justify-content: center;
+}
+.confirmation-mark {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7eee5;
+  color: #315c43;
+  font-size: 28px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 26px;
+}
+.callback-layout {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #f2f5f0;
+}
+.callback-card {
+  width: 100%;
+  max-width: 490px;
+  text-align: center;
+  padding: 42px;
+}
+.callback-card .eyebrow {
+  margin-top: 26px;
+}
+.callback-card h1 {
+  font-size: 25px;
+}
+.callback-card .btn {
+  margin-top: 20px;
+}
+.auth-form-card .alert {
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+  .auth-story {
+    min-height: auto;
+    padding: 24px 7%;
+  }
+  .auth-story > div {
+    display: none;
+  }
+  .story-footer {
+    display: none;
+  }
+  .auth-story::after {
+    display: none;
+  }
+  .auth-form-area {
+    padding: 36px 7% 48px;
+  }
+  .auth-form-card {
+    max-width: 460px;
+  }
+  .auth-form-card h2 {
+    font-size: 28px;
+  }
+}
+@media (min-width: 1600px) {
+  .auth-story {
+    padding-left: 15%;
+    padding-right: 10%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}
