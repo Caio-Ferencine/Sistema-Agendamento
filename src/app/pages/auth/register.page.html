@@ -1,0 +1,159 @@
+<main class="auth-layout">
+  <section class="auth-story" aria-label="Apresentação">
+    <a class="auth-brand" routerLink="/login"
+      ><span class="brand-mark" aria-hidden="true">a.</span> agenda</a
+    >
+    <div>
+      <p class="eyebrow">SEU TEMPO, BEM CUIDADO</p>
+      <h1>Uma rotina mais leve.<br />Um horário só seu.</h1>
+      <p>Crie sua conta e encontre o melhor momento para cuidar de você.</p>
+      <div class="story-detail">
+        <span aria-hidden="true">01</span> Escolha seu serviço e profissional
+      </div>
+      <div class="story-detail"><span aria-hidden="true">02</span> Encontre o horário ideal</div>
+      <div class="story-detail">
+        <span aria-hidden="true">03</span> Confirme e acompanhe sua agenda
+      </div>
+    </div>
+    <span class="story-footer">Tudo começa com um tempo para você.</span>
+  </section>
+
+  <section class="auth-form-area">
+    <div class="auth-form-card">
+      @if (confirmationSent()) {
+        <div class="confirmation-mark" aria-hidden="true">✓</div>
+        <p class="eyebrow">FALTA SÓ UM PASSO</p>
+        <h2>Confira seu e-mail</h2>
+        <div class="alert alert-success" role="status">
+          Se o cadastro puder ser concluído, enviaremos um link para
+          <strong>{{ form.controls.email.value }}</strong
+          >.
+        </div>
+        <p class="muted">
+          Abra o link neste mesmo navegador para confirmar sua conta. Confira também a pasta de
+          spam. Se já tem uma conta, você pode entrar.
+        </p>
+        <a class="btn btn-primary auth-submit" routerLink="/login"
+          >Ir para o login <span aria-hidden="true">↗</span></a
+        >
+      } @else {
+        <p class="eyebrow">VAMOS COMEÇAR</p>
+        <h2>Crie sua conta</h2>
+        <p class="muted auth-intro">Seus próximos agendamentos a poucos passos.</p>
+        @if (error()) {
+          <div class="alert alert-error" role="alert">{{ error() }}</div>
+        }
+        <form
+          [formGroup]="form"
+          (ngSubmit)="submit()"
+          class="stack"
+          novalidate
+          [attr.aria-busy]="pending()"
+        >
+          <div class="field">
+            <label for="register-name">Nome completo</label>
+            <input
+              id="register-name"
+              type="text"
+              formControlName="nome"
+              autocomplete="name"
+              placeholder="Como podemos chamar você?"
+              maxlength="120"
+              [attr.aria-invalid]="form.controls.nome.touched && form.controls.nome.invalid"
+              aria-describedby="register-name-error"
+            />
+            <span id="register-name-error" class="field-error">
+              @if (form.controls.nome.touched && form.controls.nome.invalid) {
+                Informe seu nome com 2 a 120 caracteres.
+              }
+            </span>
+          </div>
+          <div class="field">
+            <label for="register-email">E-mail</label>
+            <input
+              id="register-email"
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              placeholder="voce@exemplo.com"
+              maxlength="254"
+              [attr.aria-invalid]="form.controls.email.touched && form.controls.email.invalid"
+              aria-describedby="register-email-error"
+            />
+            <span id="register-email-error" class="field-error">
+              @if (form.controls.email.touched && form.controls.email.invalid) {
+                Informe um e-mail válido.
+              }
+            </span>
+          </div>
+          <div class="field">
+            <label for="register-phone">Telefone <span class="muted">(opcional)</span></label>
+            <input
+              id="register-phone"
+              type="tel"
+              formControlName="telefone"
+              autocomplete="tel"
+              placeholder="(11) 99999-9999"
+              maxlength="20"
+              [attr.aria-invalid]="form.controls.telefone.touched && form.controls.telefone.invalid"
+              aria-describedby="register-phone-error"
+            />
+            <span id="register-phone-error" class="field-error">
+              @if (form.controls.telefone.touched && form.controls.telefone.invalid) {
+                Informe um telefone válido, com DDD.
+              }
+            </span>
+          </div>
+          <div class="field">
+            <label for="register-password">Senha</label>
+            <input
+              id="register-password"
+              type="password"
+              formControlName="password"
+              autocomplete="new-password"
+              placeholder="Pelo menos 8 caracteres"
+              minlength="8"
+              maxlength="128"
+              [attr.aria-invalid]="form.controls.password.touched && form.controls.password.invalid"
+              aria-describedby="register-password-error"
+            />
+            <span id="register-password-error" class="field-error">
+              @if (form.controls.password.touched && form.controls.password.invalid) {
+                Use uma senha com 8 a 128 caracteres.
+              }
+            </span>
+          </div>
+          <div class="field">
+            <label for="register-confirmation">Confirme a senha</label>
+            <input
+              id="register-confirmation"
+              type="password"
+              formControlName="confirmation"
+              autocomplete="new-password"
+              placeholder="Digite sua senha novamente"
+              maxlength="128"
+              [attr.aria-invalid]="
+                form.controls.confirmation.touched &&
+                (form.controls.confirmation.invalid || form.hasError('passwordsMismatch'))
+              "
+              aria-describedby="register-confirmation-error"
+            />
+            <span id="register-confirmation-error" class="field-error">
+              @if (
+                form.controls.confirmation.touched &&
+                (form.controls.confirmation.invalid || form.hasError('passwordsMismatch'))
+              ) {
+                As senhas precisam ser iguais.
+              }
+            </span>
+          </div>
+          <button class="btn btn-primary auth-submit" type="submit" [disabled]="pending()">
+            {{ pending() ? 'Criando sua conta…' : 'Criar minha conta' }}
+            <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+        <p class="auth-switch">Já tem uma conta? <a routerLink="/login">Entrar</a></p>
+      }
+    </div>
+  </section>
+</main>
